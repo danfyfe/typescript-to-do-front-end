@@ -20,3 +20,17 @@
 .App-link {
   color: #09d3ac;
 }
+
+:root {
+  --main-bg-color: #3F88C5;
+  --second-bg-color: white;
+}
+
+.main-color {
+  background-color: var(--main-bg-color);
+}
+
+.sec-color {
+  background-color: var(--second-bg-color)
+}
+
