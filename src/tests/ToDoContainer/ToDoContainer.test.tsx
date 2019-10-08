@@ -1,9 +1,10 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 
 import {ToDosContainer} from '../../containers/ToDosContainer'
 import ToDosList from '../../containers/lists/ToDosList'
+import ToDoCard from '../../components/cards/ToDoCard'
 
 Enzyme.configure({adapter: new EnzymeAdapter()})
 
@@ -14,6 +15,24 @@ test('Renders ToDoList Component', () => {
 })
 
 test('Render ToDoList Title', () => {
-  const wrapper = shallow(<ToDosContainer/>)
+  const wrapper = shallow(<ToDosContainer />)
   // expect(wrapper.find())
+})
+
+test('Renders correct number of toDos', () => {
+
+  const toDos = [
+    { id: 1, title: 'Blep', completed: false},
+    { id:2, title: 'Bork!', completed: false}
+  ]
+
+  function updateStatus( id: number ){
+    let toDo = toDos.find( toDo => {
+      return toDo.id === id
+    })
+  }
+
+  const wrapper = shallow(<ToDosList toDos={toDos} updateStatus={updateStatus}/>)
+
+  expect(wrapper.find(ToDoCard)).toHaveLength(toDos.length)
 })

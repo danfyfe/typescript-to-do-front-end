@@ -5,8 +5,8 @@ import { ToDo } from '../interfaces/ToDoInterfaces'
 
 // placeholder toDos until backend happens
 const origToDos: ToDo[] = [
-  { id: 1, title: 'Blep'},
-  { id:2, title: 'Bork!'}
+  { id: 1, title: 'Blep', completed: false},
+  { id:2, title: 'Bork!', completed: false}
 ]
 
 
@@ -16,16 +16,22 @@ export const ToDosContainer: React.FC = props => {
   const [ toDos, setToDos ] = useState(origToDos)
 
   function addToDo( title: string){
-    let newToDo = { id: origToDos.length + 1, title}
+    let newToDo = { id: origToDos.length + 1, title, completed: false}
     let newToDos = [newToDo, ...origToDos]
     setToDos(newToDos)
     setAdding(false)
   }
 
-  return(
-    <div className='d-flex flex-column m-2'>
-      <div className='d-flex justify-content-between'>
+  function updateStatus( id: number ){
+    let toDo = toDos.find( toDo => {
+      return toDo.id === id
+    })
+  }
 
+  return(
+    <div className='d-flex flex-column main'>
+
+      <div className='d-flex justify-content-between'>
         <div className='main-color rounded-top'>
           <span className='p-1 m-2'>To Dos </span>
         </div>
@@ -37,7 +43,16 @@ export const ToDosContainer: React.FC = props => {
       </div>
       <div className='sec-color border'>
         {adding ? <AddToDoForm addToDo={addToDo} setAdding={setAdding} /> : null}
-        <ToDosList toDos={toDos}/>
+        <div className='d-flex justify-content-around third-color font-weight-bold'>
+          <span>Title</span>
+          <span>Status</span>
+        </div>
+
+        <ToDosList
+          toDos={toDos}
+          updateStatus={updateStatus}
+        />
+
       </div>
     </div>
   )

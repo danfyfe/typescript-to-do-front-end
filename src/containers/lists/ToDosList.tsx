@@ -1,26 +1,20 @@
 import React from 'react';
-import {ToDoCard} from '../../components/ToDoCard'
+import ToDoCard from '../../components/cards/ToDoCard'
+import { ToDo } from '../../interfaces/ToDoInterfaces'
 
-interface ToDo {
-  id: number;
-  title: string;
-}
 
-interface ToDosListProps {
-  toDos: ToDo[]
-}
+const ToDosList: React.FC<{toDos: ToDo[], updateStatus: any}> = props => {
+  const { updateStatus, toDos } = props
 
-function renderToDoCards(toDos: ToDo[]){
-  return toDos.map( toDo => {
-    return <ToDoCard key={toDo.id} toDo={toDo}/>
-  })
-}
-const ToDosList: React.FC<{toDos: ToDo[]}> = (ToDosListProps) => {
-
+  function renderToDoCards(toDos: ToDo[]){
+    return toDos.map( toDo => {
+      return <ToDoCard key={toDo.id} toDo={toDo} updateStatus={updateStatus}/>
+    })
+  }
 
   return(
     <div id='to-do-list'>
-      {renderToDoCards(ToDosListProps.toDos)}
+      {renderToDoCards(toDos)}
     </div>
   )
 }

@@ -1,0 +1,25 @@
+.main-color {
+  background-color: #3F88C5;
+}
+
+.sec-color {
+  background-color: white;
+}
+
+.third-color {
+  background-color: grey;
+}
+
+.main {
+  width: 90%;
+  margin: 2vh auto;
+}
+
+@media only screen and (min-width: 600px) {
+  .main {
+    width: 50%;
+    margin: 2vh auto;
+  }
+}
+
+/*# sourceMappingURL=App.css.map */
