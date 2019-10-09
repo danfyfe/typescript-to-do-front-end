@@ -10,7 +10,7 @@ const origToDos: ToDo[] = [
 ]
 
 
-export const ToDosContainer: React.FC = props => {
+export const ToDosContainer: React.FC = () => {
 
   const [ adding, setAdding ] = useState()
   const [ toDos, setToDos ] = useState(origToDos)
@@ -26,6 +26,7 @@ export const ToDosContainer: React.FC = props => {
     let toDo = toDos.find( toDo => {
       return toDo.id === id
     })
+    console.log(toDo)
   }
 
   return(

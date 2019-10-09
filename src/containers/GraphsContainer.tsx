@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Chart from 'chart.js'
-const GraphsContainer: React.FC = props => {
+const GraphsContainer: React.FC = () => {
 
   useEffect( () => {
     // const canvas = document.getElementById('canvas')

@@ -1,11 +1,11 @@
 import React from 'react';
 import { HomePage } from './pages/HomePage'
-import './styles/css/App.css'
+import './styles/css/main.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const App: React.FC = () => {
-  library.add( faEdit )
+  library.add( faEdit, faCheck, faTimes )
   return (
     <div>
       <HomePage />
