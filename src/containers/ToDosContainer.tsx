@@ -22,11 +22,14 @@ export const ToDosContainer: React.FC = () => {
     setAdding(false)
   }
 
-  function updateStatus( id: number ){
-    let toDo = toDos.find( toDo => {
-      return toDo.id === id
+  function updateStatus( toDo: ToDo ){
+
+    let origToDo = toDos.find( oToDo => {
+      return oToDo.id === toDo.id
     })
-    console.log(toDo)
+
+    // let index = toDos.indexOf(origToDo)
+
   }
 
   return(

@@ -24,7 +24,9 @@ test('Renders correct number of toDos', () => {
     { id:2, title: 'Bork!', completed: false}
   ]
 
-  function updateStatus( id: number ){
+  function updateStatus( id: number, completed: boolean, title: string ){
+    console.log('completed:', completed, 'title:', title )
+
     let toDo = toDos.find( toDo => {
       return toDo.id === id
     })
