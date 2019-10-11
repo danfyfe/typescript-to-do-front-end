@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring'
 // import ToDoCardEdit from './ToDoCardEdit'
 // import ToDoCardStatus from './ToDoCardStatus'
 import { ToDo } from '../../interfaces/ToDoInterfaces'
@@ -6,12 +7,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props => {
 
+  const springProps = useSpring({
+    opacity: 1, color:'blue', from: {opacity: 0, color: 'red'}
+    
+
+  })
+
   const [ editing, setEditing ] = useState(false)
 
   const { title, completed } = props.toDo
   const { updateStatus, toDo } = props
 
   return(
+    <animated.div style={springProps}>
     <div className='container'>
       <div className='row p2'>
 
@@ -37,6 +45,7 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
 
       </div>
     </div>
+    </animated.div>
   )
 };
 
