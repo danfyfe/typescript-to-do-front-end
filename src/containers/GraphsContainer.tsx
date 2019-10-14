@@ -8,7 +8,6 @@ require('highcharts/modules/exporting')(Highcharts);
 const GraphsContainer: React.FC = () => {
 
   useEffect( () => {
-    // const canvas = document.getElementById('canvas')
     // chart.js
     new Chart('canvas-1', {
         type: 'bar',
@@ -76,11 +75,6 @@ const GraphsContainer: React.FC = () => {
         data: [4,2,1]
       }]
     })
-
-
-
-
-
   })
 
 

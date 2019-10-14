@@ -7,11 +7,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props => {
 
+  const [ editing, setEditing ] = useState(false)
+
   const springProps = useSpring({
-    opacity: 1, color:'black', from: {opacity: 0, color: 'white'}
+    // opacity: 1, color:'black', from: {
+    //   opacity: 0, color: 'white'
+    // }
+
+    transform: editing ? 'rotateX(360deg)' : 'rotateX(0deg)'
   })
 
-  const [ editing, setEditing ] = useState(false)
+  const flipProps = useSpring({
+    width: '100%', display: 'flex', transform: editing ? 'rotateX(360deg)' : 'rotateX(0deg)'
+  });
+
 
   const { title, completed } = props.toDo
   const { updateStatus, toDo } = props
@@ -21,7 +30,7 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
     <div className='container'>
       <div className='row p2'>
 
-        { editing ? <ToDoCardEdit setEditing={setEditing} toDo={toDo} updateStatus={updateStatus}/> : <>
+        { editing ? <ToDoCardEdit setEditing={setEditing} toDo={toDo} updateStatus={updateStatus}/> : <animated.div style={flipProps}>
 
           <div className='col-sm d-flex justify-content-center'>
             <span className=''>{title}</span>
@@ -38,7 +47,7 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
             </div>
           </div>
 
-          </>
+          </animated.div>
         }
 
       </div>
@@ -58,6 +67,10 @@ const ToDoCardStatus: React.FC<{ completed: boolean }> = props => {
 
 const ToDoCardEdit: React.FC<{ setEditing: any, toDo:ToDo, updateStatus: any }> = props => {
 
+  const springProps = useSpring({
+    width: '100%', display: 'flex'
+  })
+
   const { toDo, setEditing, updateStatus } = props
 
   const [ title, setTitle ] = useState(toDo.title)
@@ -66,7 +79,7 @@ const ToDoCardEdit: React.FC<{ setEditing: any, toDo:ToDo, updateStatus: any }> 
   // console.log('completed?', status)
 
   return(<>
-
+    <animated.div style={springProps}>
     <div className='col-sm d-flex justify-content-center p-1'>
       <input className='' type='text' value={title} onChange={e => setTitle(e.target.value)}/>
     </div>
@@ -100,6 +113,7 @@ const ToDoCardEdit: React.FC<{ setEditing: any, toDo:ToDo, updateStatus: any }> 
 
       </div>
     </div>
+    </animated.div>
   </>)
 };
 
