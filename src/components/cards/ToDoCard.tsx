@@ -14,11 +14,12 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
     //   opacity: 0, color: 'white'
     // }
 
-    transform: editing ? 'rotateX(360deg)' : 'rotateX(0deg)'
+    transform: editing ? 'rotateX(0deg)' : 'rotateX(180deg)',
+    config: { mass: 5, tension: 500, friction: 80}
   })
 
   const flipProps = useSpring({
-    width: '100%', display: 'flex', transform: editing ? 'rotateX(360deg)' : 'rotateX(0deg)'
+    width: '100%', display: 'flex', transform: 'rotateX(-180deg)'
   });
 
 
