@@ -8,9 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props => {
 
   const springProps = useSpring({
-    opacity: 1, color:'blue', from: {opacity: 0, color: 'red'}
-    
-
+    opacity: 1, color:'black', from: {opacity: 0, color: 'white'}
   })
 
   const [ editing, setEditing ] = useState(false)

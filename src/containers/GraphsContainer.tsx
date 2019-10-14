@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react'
 import Chart from 'chart.js'
+const Highcharts = require('highcharts');
+require('highcharts/modules/exporting')(Highcharts);
+
+// const Highcharts = require('highcharts/highstock');
+
 const GraphsContainer: React.FC = () => {
 
   useEffect( () => {
     // const canvas = document.getElementById('canvas')
+    // chart.js
     new Chart('canvas-1', {
         type: 'bar',
         data: {
@@ -44,14 +50,48 @@ const GraphsContainer: React.FC = () => {
             }
         }
     });
+
+    // highcharts
+    Highcharts.chart({
+      chart: {
+        renderTo: 'container',
+        type: 'bar'
+      },
+      title: {
+        text: 'Pudding Consumption'
+      },
+      xAxis: {
+        categories: ['Banana', 'Chocolate', 'Vanilla']
+      },
+      yAxis: {
+        title: {
+          text: 'Pudding Eaten'
+        }
+      },
+      series: [{
+        name: 'Jane',
+        data: [1,4,4]
+      }, {
+        name: 'John',
+        data: [4,2,1]
+      }]
+    })
+
+
+
+
+
   })
 
 
-  return(
+  return(<>
     <div className='main border'>
       <canvas id='canvas-1' width='400' height='400'/>
     </div>
-  )
+    <div className='main border'>
+      <div id="container" style={{width:'100%', height:'400px'}}></div>
+    </div>
+  </>)
 }
 
 export default GraphsContainer
