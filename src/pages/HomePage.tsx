@@ -11,7 +11,8 @@ export const HomePage: React.FC = () => {
   const origToDos: ToDo[] = [
     { id: 1, title: 'Make list', completed: true},
     { id:2, title: 'Do this!', completed: false},
-    { id:3, title: 'Do that!', completed: true}
+    { id:3, title: 'Do that!', completed: true},
+    { id:4, title: 'Finish list', completed: false}
   ]
 
   // const [ adding, setAdding ] = useState()

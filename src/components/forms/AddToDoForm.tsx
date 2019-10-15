@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
+import { useSpring, animated } from 'react-spring'
 
 const AddToDoForm: React.FC<{addToDo: any, setAdding: any}> = props => {
 
+  const springProps = useSpring({
+    transform: 'scale(1)', from: { transform: 'scale(0)'}
+  })
+
   const [ title, setTitle ] = useState()
+
   const { addToDo, setAdding } = props
-  return(
+
+  return(<animated.div style={springProps}>
     <div className='border rounded m-2 p-1 d-flex flex-column'>
       <input
         className='border rounded p-1'
@@ -23,7 +30,7 @@ const AddToDoForm: React.FC<{addToDo: any, setAdding: any}> = props => {
         onClick={() => setAdding(false)}>Cancel</button>
       </div>
     </div>
-  )
+  </animated.div>)
 };
 
 export default AddToDoForm

@@ -3,8 +3,6 @@ import ToDosList from './lists/ToDosList'
 import AddToDoForm from '../components/forms/AddToDoForm'
 import { ToDo } from '../interfaces/ToDoInterfaces'
 
-import { useSpring, animated } from 'react-spring'
-
 
 // placeholder toDos until backend happens
 // const origToDos: ToDo[] = [
@@ -18,9 +16,6 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateSt
 
   const [ adding, setAdding ] = useState()
 
-  const springProps = useSpring({
-
-  })
 
   return(
     <div className='d-flex flex-column main'>
@@ -37,9 +32,9 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateSt
       </div>
 
       <div className='sec-color border'>
-        {adding ? <animated.div style={springProps}>
+        {adding ?
           <AddToDoForm addToDo={addToDo} setAdding={setAdding}/>
-        </animated.div> : null}
+          : null}
         <div className='d-flex justify-content-around third-color font-weight-bold'>
           <span>Title</span>
           <span>Status</span>
