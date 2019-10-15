@@ -7,30 +7,31 @@ import { useSpring, animated } from 'react-spring'
 
 
 // placeholder toDos until backend happens
-const origToDos: ToDo[] = [
-  { id: 1, title: 'Blep', completed: false},
-  { id:2, title: 'Bork!', completed: false}
-]
+// const origToDos: ToDo[] = [
+//   { id: 1, title: 'Blep', completed: false},
+//   { id:2, title: 'Bork!', completed: false}
+// ]
 
 
-export const ToDosContainer: React.FC = () => {
+export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateStatus: any}> = props => {
+  const { origToDos, addToDo, updateStatus } = props
 
   const [ adding, setAdding ] = useState()
   const [ toDos, setToDos ] = useState(origToDos)
 
-  function addToDo( title: string){
-    let newToDo = { id: origToDos.length + 1, title, completed: false}
-    let newToDos = [newToDo, ...origToDos]
-    setToDos(newToDos)
-    setAdding(false)
-  }
-
-  function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
-    let index: number = toDos.indexOf(origToDo)
-    let newToDos = [...toDos]
-    newToDos.splice(index, 1, updatedToDo)
-    setToDos(newToDos)
-  }
+  // function addToDo( title: string){
+  //   let newToDo = { id: origToDos.length + 1, title, completed: false}
+  //   let newToDos = [newToDo, ...origToDos]
+  //   setToDos(newToDos)
+  //   setAdding(false)
+  // }
+  //
+  // function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
+  //   let index: number = toDos.indexOf(origToDo)
+  //   let newToDos = [...toDos]
+  //   newToDos.splice(index, 1, updatedToDo)
+  //   setToDos(newToDos)
+  // }
 
   const springProps = useSpring({
 
