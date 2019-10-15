@@ -9,8 +9,9 @@ import { ToDo } from '../interfaces/ToDoInterfaces'
 export const HomePage: React.FC = () => {
   // placeholder toDos until backend happens
   const origToDos: ToDo[] = [
-    { id: 1, title: 'Blep', completed: false},
-    { id:2, title: 'Bork!', completed: false}
+    { id: 1, title: 'Make list', completed: true},
+    { id:2, title: 'Do this!', completed: false},
+    { id:3, title: 'Do that!', completed: true}
   ]
 
   // const [ adding, setAdding ] = useState()

@@ -63,7 +63,7 @@ const ToDoCardStatus: React.FC<{ completed: boolean }> = props => {
   const { completed } = props
 
   return(
-    <div className=''>{ completed ? 'Completed' : 'In progress'}</div>
+    <div className={completed ? 'text-primary' : 'text-warning'}>{ completed ? 'Completed' : 'In progress'}</div>
   )
 };
 
@@ -77,8 +77,6 @@ const ToDoCardEdit: React.FC<{ setEditing: any, toDo:ToDo, updateStatus: any }> 
 
   const [ title, setTitle ] = useState(toDo.title)
   const [ status, setStatus ] = useState(toDo.completed)
-
-  // console.log('completed?', status)
 
   return(<>
     <animated.div style={springProps}>
