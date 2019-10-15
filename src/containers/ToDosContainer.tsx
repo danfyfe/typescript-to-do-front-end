@@ -3,6 +3,9 @@ import ToDosList from './lists/ToDosList'
 import AddToDoForm from '../components/forms/AddToDoForm'
 import { ToDo } from '../interfaces/ToDoInterfaces'
 
+import { useSpring, animated } from 'react-spring'
+
+
 // placeholder toDos until backend happens
 const origToDos: ToDo[] = [
   { id: 1, title: 'Blep', completed: false},
@@ -22,15 +25,16 @@ export const ToDosContainer: React.FC = () => {
     setAdding(false)
   }
 
-  function updateStatus( toDo: ToDo ){
-
-    let origToDo = toDos.find( oToDo => {
-      return oToDo.id === toDo.id
-    })
-
-    // let index = toDos.indexOf(origToDo)
-
+  function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
+    let index: number = toDos.indexOf(origToDo)
+    let newToDos = [...toDos]
+    newToDos.splice(index, 1, updatedToDo)
+    setToDos(newToDos)
   }
+
+  const springProps = useSpring({
+
+  })
 
   return(
     <div className='d-flex flex-column main'>
@@ -45,8 +49,11 @@ export const ToDosContainer: React.FC = () => {
         </div>
 
       </div>
+
       <div className='sec-color border'>
-        {adding ? <AddToDoForm addToDo={addToDo} setAdding={setAdding} /> : null}
+        {adding ? <animated.div style={springProps}>
+        <AddToDoForm addToDo={addToDo} setAdding={setAdding} />
+        </animated.div> : null}
         <div className='d-flex justify-content-around third-color font-weight-bold'>
           <span>Title</span>
           <span>Status</span>

@@ -9,17 +9,16 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
 
   const [ editing, setEditing ] = useState(false)
 
-  const springProps = useSpring({
-    // opacity: 1, color:'black', from: {
-    //   opacity: 0, color: 'white'
-    // }
-
-    transform: editing ? 'rotateX(0deg)' : 'rotateX(180deg)',
-    config: { mass: 5, tension: 500, friction: 80}
+  const editingProps = useSpring({
+    width: '100%', display: 'flex',
+    transform: editing ? 'rotateY(0deg)' : 'rotateY(180deg)',
+    opacity: editing ? 1 : 0
   })
 
-  const flipProps = useSpring({
-    width: '100%', display: 'flex', transform: 'rotateX(-180deg)'
+  const flippedProps = useSpring({
+    width: '100%', display: 'flex',
+    transform: editing ? 'rotateY(-180deg)' : 'rotateY(0deg)',
+    opacity: editing ? 0 : 1
   });
 
 
@@ -27,11 +26,14 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
   const { updateStatus, toDo } = props
 
   return(
-    <animated.div style={springProps}>
+
     <div className='container'>
       <div className='row p2'>
 
-        { editing ? <ToDoCardEdit setEditing={setEditing} toDo={toDo} updateStatus={updateStatus}/> : <animated.div style={flipProps}>
+        { editing ?
+          <animated.div style={editingProps}>
+          <ToDoCardEdit setEditing={setEditing} toDo={toDo} updateStatus={updateStatus}/>
+          </animated.div> : <animated.div style={flippedProps}>
 
           <div className='col-sm d-flex justify-content-center'>
             <span className=''>{title}</span>
@@ -53,7 +55,6 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
 
       </div>
     </div>
-    </animated.div>
   )
 };
 
@@ -103,7 +104,8 @@ const ToDoCardEdit: React.FC<{ setEditing: any, toDo:ToDo, updateStatus: any }> 
       <div className='d-flex justify-content-between p-2'>
 
         <div className='pl-2' onClick={() => {
-          updateStatus({id: toDo.id, title, completed: status})
+          updateStatus( toDo, {id: toDo.id, title, completed: status})
+          setEditing(false)
         }}>
           <FontAwesomeIcon className='text-success' icon='check'/>
         </div>
