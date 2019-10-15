@@ -13,25 +13,10 @@ import { useSpring, animated } from 'react-spring'
 // ]
 
 
-export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateStatus: any}> = props => {
+export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateStatus: any }> = props => {
   const { origToDos, addToDo, updateStatus } = props
 
   const [ adding, setAdding ] = useState()
-  const [ toDos, setToDos ] = useState(origToDos)
-
-  // function addToDo( title: string){
-  //   let newToDo = { id: origToDos.length + 1, title, completed: false}
-  //   let newToDos = [newToDo, ...origToDos]
-  //   setToDos(newToDos)
-  //   setAdding(false)
-  // }
-  //
-  // function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
-  //   let index: number = toDos.indexOf(origToDo)
-  //   let newToDos = [...toDos]
-  //   newToDos.splice(index, 1, updatedToDo)
-  //   setToDos(newToDos)
-  // }
 
   const springProps = useSpring({
 
@@ -53,7 +38,7 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateSt
 
       <div className='sec-color border'>
         {adding ? <animated.div style={springProps}>
-        <AddToDoForm addToDo={addToDo} setAdding={setAdding} />
+          <AddToDoForm addToDo={addToDo} setAdding={setAdding}/>
         </animated.div> : null}
         <div className='d-flex justify-content-around third-color font-weight-bold'>
           <span>Title</span>
@@ -61,7 +46,7 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateSt
         </div>
 
         <ToDosList
-          toDos={toDos}
+          toDos={origToDos}
           updateStatus={updateStatus}
         />
 

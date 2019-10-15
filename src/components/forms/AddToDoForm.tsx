@@ -15,7 +15,10 @@ const AddToDoForm: React.FC<{addToDo: any, setAdding: any}> = props => {
       <div className='d-flex justify-content-around p-1'>
         <button
         className='border rounded'
-        onClick={() => addToDo(title)}>Add</button>
+        onClick={() => {
+          addToDo(title)
+          setAdding(false)
+        }}>Add</button>
         <button className='border rounded'
         onClick={() => setAdding(false)}>Cancel</button>
       </div>

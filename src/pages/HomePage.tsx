@@ -13,15 +13,13 @@ export const HomePage: React.FC = () => {
     { id:2, title: 'Bork!', completed: false}
   ]
 
-  const [ adding, setAdding ] = useState()
+  // const [ adding, setAdding ] = useState()
   const [ toDos, setToDos ] = useState(origToDos)
 
   function addToDo( title: string){
-    let newToDo = { id: origToDos.length + 1, title, completed: false}
-    let newToDos = [...origToDos, newToDo]
+    let newToDo = { id: toDos.length + 1, title, completed: false}
+    let newToDos = [...toDos, newToDo]
     setToDos(newToDos)
-    console.log(toDos)
-    setAdding(false)
   }
 
   function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
@@ -35,7 +33,7 @@ return(
   <div>
     <Header />
     <ToDosContainer origToDos={toDos} addToDo={addToDo} updateStatus={updateStatus} />
-    <GraphsContainer />
+    <GraphsContainer toDos={toDos}/>
   </div>
   )
 };
