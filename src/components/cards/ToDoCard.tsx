@@ -5,7 +5,7 @@ import { useSpring, animated } from 'react-spring'
 import { ToDo } from '../../interfaces/ToDoInterfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props => {
+const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: Function }> = props => {
 
   const [ editing, setEditing ] = useState(false)
 
@@ -20,7 +20,6 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: any }> = props
     transform: editing ? 'rotateY(-180deg)' : 'rotateY(0deg)',
     opacity: editing ? 0 : 1
   });
-
 
   const { title, completed } = props.toDo
   const { updateStatus, toDo } = props
