@@ -5,8 +5,7 @@ import { useSpring, animated } from 'react-spring'
 import { ToDo } from '../../interfaces/ToDoInterfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: Function }> = props => {
-
+const ToDoCard: React.FC<{ key: number, index: number, toDo: ToDo, updateStatus: Function }> = props => {
   const [ editing, setEditing ] = useState(false)
 
   const editingProps = useSpring({
@@ -22,7 +21,7 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: Function }> = 
   });
 
   const { title, completed } = props.toDo
-  const { updateStatus, toDo } = props
+  const { updateStatus, toDo, index } = props
 
   return(
 
@@ -32,22 +31,27 @@ const ToDoCard: React.FC<{ key: number, toDo: ToDo, updateStatus: Function }> = 
         { editing ?
           <animated.div style={editingProps}>
           <ToDoCardEdit setEditing={setEditing} toDo={toDo} updateStatus={updateStatus}/>
-          </animated.div> : <animated.div style={flippedProps}>
+          </animated.div> :
+          <animated.div style={flippedProps}>
 
-          <div className='col-sm d-flex justify-content-center'>
-            <span className=''>{title}</span>
-          </div>
-
-
-          <div className='col-sm d-flex justify-content-around' onClick={() => setEditing(true)}>
-            <div className=''>
-              <ToDoCardStatus completed={completed}/>
+            <div className='col-sm d-flex'>
+                <div className='col-1'>
+                  <span>{index + 1}</span>
+                </div>
+                <div className='col'>
+                  <span>{title}</span>
+                </div>
             </div>
 
-            <div className=''>
-              <FontAwesomeIcon className='' icon='edit'/>
+            <div className='col-sm d-flex justify-content-around' onClick={() => setEditing(true)}>
+              <div className=''>
+                <ToDoCardStatus completed={completed}/>
+              </div>
+
+              <div className=''>
+                <FontAwesomeIcon className='' icon='edit'/>
+              </div>
             </div>
-          </div>
 
           </animated.div>
         }

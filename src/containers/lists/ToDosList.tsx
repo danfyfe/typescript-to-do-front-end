@@ -7,8 +7,8 @@ const ToDosList: React.FC<{toDos: ToDo[], updateStatus: any}> = props => {
   const { updateStatus, toDos } = props
 
   function renderToDoCards(toDos: ToDo[]){
-    return toDos.map( toDo => {
-      return <ToDoCard key={toDo.id} toDo={toDo} updateStatus={updateStatus}/>
+    return toDos.map( (toDo, index) => {
+      return <ToDoCard key={toDo.id} index={index} toDo={toDo} updateStatus={updateStatus}/>
     })
   }
 
