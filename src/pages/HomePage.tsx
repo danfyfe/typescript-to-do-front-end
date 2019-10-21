@@ -33,9 +33,26 @@ export const HomePage: React.FC = () => {
 
 
   function addToDo( title: string){
-    let newToDo = { id: toDos.length + 1, title, completed: false}
-    let newToDos = [...toDos, newToDo]
-    setToDos(newToDos)
+    fetch(`${getApiKey}/toDos`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        to_do: {
+          title: title,
+          completed: false
+        }
+      })
+    })
+      .then( resp => resp.json())
+      .then( newToDo => {
+        let newToDos = [...toDos, newToDo]
+        setToDos(newToDos)
+    })
+
+    // let newToDo = { id: toDos.length + 1, title, completed: false}
   }
 
   function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
