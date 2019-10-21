@@ -11,14 +11,6 @@ import getApiKey from '../actions/getApiKey'
 
 export const HomePage: React.FC = () => {
 
-  // placeholder toDos until backend happens
-  // const origToDos: ToDo[] = [
-  //   { id: 1, title: 'Make list', completed: true},
-  //   { id:2, title: 'Do this!', completed: false},
-  //   { id:3, title: 'Do that!', completed: true},
-  //   { id:4, title: 'Finish list', completed: false}
-  // ]
-
   const [ toDos, setToDos ] = useState()
 
   useEffect(() => {
@@ -47,12 +39,15 @@ export const HomePage: React.FC = () => {
       })
     })
       .then( resp => resp.json())
-      .then( newToDo => {
-        let newToDos = [...toDos, newToDo]
-        setToDos(newToDos)
+      .then( results => {
+        if(results.error){
+          window.alert(results.error)
+        } else {
+          // console.log(results.newToDo)
+          let newToDos = [...toDos, results.newToDo]
+          setToDos(newToDos)
+        }
     })
-
-    // let newToDo = { id: toDos.length + 1, title, completed: false}
   }
 
   function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
@@ -73,4 +68,6 @@ return(
   </div>
   )
 };
+
+// export default HomePage - this did not work. why?
 

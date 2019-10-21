@@ -9,8 +9,9 @@ const GraphsContainer: React.FC<{toDos: ToDo[]}> = props => {
 
   useEffect( () => {
     // create an object to keep track of completed and inProg status
-    const toDoProgObj = { completed: 0, inProg: 0}
+    const toDoProgObj = { completed: 0, inProg: 0 }
 
+    // go through list of to dos, look at completed, update total of completed and inProg
     toDos.forEach( toDo => {
       if( toDo.completed === true){
         toDoProgObj.completed ++
@@ -19,7 +20,7 @@ const GraphsContainer: React.FC<{toDos: ToDo[]}> = props => {
       }
     })
 
-    // find percentage of each to plug into y value
+    // find percentage of completed and inProg to plug into y value
     const completedPer = toDoProgObj.completed / toDos.length * 100
 
     const inProgPer = toDoProgObj.inProg / toDos.length * 100
@@ -49,13 +50,11 @@ const GraphsContainer: React.FC<{toDos: ToDo[]}> = props => {
         }]
       }]
     })
+
   })
 
 
   return(<>
-    {/*<div className='main border'>
-      <canvas id='canvas-1' width='400' height='400'/>
-    </div>*/}
     <div className='main border'>
       <div id="container" style={{width:'100%', height:'400px'}}></div>
     </div>
@@ -63,6 +62,18 @@ const GraphsContainer: React.FC<{toDos: ToDo[]}> = props => {
 }
 
 export default GraphsContainer
+
+
+
+
+
+
+
+// below is for char.js - switched to Highcharts
+
+/*<div className='main border'>
+<canvas id='canvas-1' width='400' height='400'/>
+</div>*/
 // import Chart from 'chart.js'
 
 // chart.js

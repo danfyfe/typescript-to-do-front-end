@@ -3,14 +3,6 @@ import ToDosList from './lists/ToDosList'
 import AddToDoForm from '../components/forms/AddToDoForm'
 import { ToDo } from '../interfaces/ToDoInterfaces'
 
-
-// placeholder toDos until backend happens
-// const origToDos: ToDo[] = [
-//   { id: 1, title: 'Blep', completed: false},
-//   { id:2, title: 'Bork!', completed: false}
-// ]
-
-
 export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateStatus: any }> = props => {
   const { origToDos, addToDo, updateStatus } = props
 
@@ -26,7 +18,7 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateSt
         </div>
 
         <div>
-          <span className='p-1'onClick={() => setAdding(true)}>+</span>
+          <span className='p-1 add-btn'onClick={() => setAdding(true)}>+</span>
         </div>
 
       </div>
