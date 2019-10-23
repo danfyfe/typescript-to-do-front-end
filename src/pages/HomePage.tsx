@@ -1,28 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Header from '../components/Header'
+import Loading from '../components/Loading'
+// import ErrorMessageCard from '../components/cards/ErrorMessageCard'
 import { ToDosContainer } from '../containers/ToDosContainer'
 import GraphsContainer from '../containers/GraphsContainer'
 import { ToDo } from '../interfaces/ToDoInterfaces'
 
+import getApiKey from '../actions/getApiKey'
+
 
 export const HomePage: React.FC = () => {
-  // placeholder toDos until backend happens
-  const origToDos: ToDo[] = [
-    { id: 1, title: 'Make list', completed: true},
-    { id:2, title: 'Do this!', completed: false},
-    { id:3, title: 'Do that!', completed: true},
-    { id:4, title: 'Finish list', completed: false}
-  ]
 
-  // const [ adding, setAdding ] = useState()
-  const [ toDos, setToDos ] = useState(origToDos)
+  const [ toDos, setToDos ] = useState()
+  // const [ errorMessage, setErrorMessage ] = useState(null)
 
-  function addToDo( title: string){
-    let newToDo = { id: toDos.length + 1, title, completed: false}
-    let newToDos = [...toDos, newToDo]
-    setToDos(newToDos)
-  }
+  // console.log('home page error message', errorMessage)
+
+  useEffect(() => {
+    fetch(`${getApiKey}/toDos`, {
+      method: 'GET'
+    })
+    .then( resp => resp.json())
+    .then( results => {
+      setToDos(results)
+    })
+  }, [])
+
+
+  // function addToDo( title: string){
+  //   fetch(`${getApiKey}/toDos`, {
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       to_do: {
+  //         title: title,
+  //         completed: false
+  //       }
+  //     })
+  //   })
+  //     .then( resp => resp.json())
+  //     .then( results => {
+  //       if(results.error){
+  //         // setErrorMessage(results.error)
+  //       } else {
+  //         // console.log(results.newToDo)
+  //         let newToDos = [...toDos, results.newToDo]
+  //         setToDos(newToDos)
+  //       }
+  //   })
+  // }
 
   function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
     let index: number = toDos.indexOf(origToDo)
@@ -34,9 +64,14 @@ export const HomePage: React.FC = () => {
 return(
   <div>
     <Header />
-    <ToDosContainer origToDos={toDos} addToDo={addToDo} updateStatus={updateStatus} />
-    <GraphsContainer toDos={toDos}/>
+    { toDos ? <>
+      <ToDosContainer origToDos={toDos} setToDos={setToDos} updateStatus={updateStatus} />
+      <GraphsContainer toDos={toDos}/> </>:
+      <Loading/>
+    }
   </div>
   )
 };
+
+// export default HomePage - this did not work. why?
 
