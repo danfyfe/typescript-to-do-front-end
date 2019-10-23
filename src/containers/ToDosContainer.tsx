@@ -12,7 +12,7 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, up
 
   const [ adding, setAdding ] = useState()
   const [ errorMessage, setErrorMessage ] = useState(null)
-  const [ newToDoTitle, setNewToDoTitle ] = useState()
+  // const [ newToDoTitle, setNewToDoTitle ] = useState()
 
   function addToDo( title: string){
     fetch(`${getApiKey}/toDos`, {
@@ -33,7 +33,7 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, up
         if(results.error){
           setErrorMessage(results.error)
         } else {
-          // console.log(results.newToDo)
+          setAdding(false)
           let newToDos = [...origToDos, results.newToDo]
           setToDos(newToDos)
         }
@@ -55,16 +55,16 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, up
       </div>
 
       <div className='sec-color border'>
-        {adding ?
-          <AddToDoForm
-            addToDo={addToDo}
-            setAdding={setAdding}/> : null}
         { errorMessage ?
           <ErrorMessageCard
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
-          setAdding={setAdding}
           /> : null}
+        {adding ?
+          <AddToDoForm
+            origToDos={origToDos}
+            addToDo={addToDo}
+            setAdding={setAdding}/> : null}
         <div className='d-flex justify-content-around third-color font-weight-bold'>
           <span>Title</span>
           <span>Status</span>
