@@ -1,13 +1,44 @@
 import React, { useState } from 'react'
 import ToDosList from './lists/ToDosList'
 import AddToDoForm from '../components/forms/AddToDoForm'
+import ErrorMessageCard from '../components/cards/ErrorMessageCard'
 import { ToDo } from '../interfaces/ToDoInterfaces'
 
-export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateStatus: any }> = props => {
-  const { origToDos, addToDo, updateStatus } = props
+import getApiKey from '../actions/getApiKey'
+
+
+export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, updateStatus: Function }> = props => {
+  const { origToDos, updateStatus, setToDos } = props
 
   const [ adding, setAdding ] = useState()
+  const [ errorMessage, setErrorMessage ] = useState(null)
+  const [ newToDoTitle, setNewToDoTitle ] = useState()
 
+  function addToDo( title: string){
+    fetch(`${getApiKey}/toDos`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        to_do: {
+          title: title,
+          completed: false
+        }
+      })
+    })
+      .then( resp => resp.json())
+      .then( results => {
+        if(results.error){
+          setErrorMessage(results.error)
+        } else {
+          // console.log(results.newToDo)
+          let newToDos = [...origToDos, results.newToDo]
+          setToDos(newToDos)
+        }
+    })
+  }
 
   return(
     <div className='d-flex flex-column main'>
@@ -25,8 +56,15 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], addToDo: any, updateSt
 
       <div className='sec-color border'>
         {adding ?
-          <AddToDoForm addToDo={addToDo} setAdding={setAdding}/>
-          : null}
+          <AddToDoForm
+            addToDo={addToDo}
+            setAdding={setAdding}/> : null}
+        { errorMessage ?
+          <ErrorMessageCard
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          setAdding={setAdding}
+          /> : null}
         <div className='d-flex justify-content-around third-color font-weight-bold'>
           <span>Title</span>
           <span>Status</span>
