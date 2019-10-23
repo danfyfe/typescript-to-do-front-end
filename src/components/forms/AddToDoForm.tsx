@@ -33,7 +33,7 @@ const AddToDoForm: React.FC<{addToDo: Function, setAdding: Function, origToDos: 
             break
           } else {
             input.className='border rounded p-1'
-            warning.innerText = 'test'
+            warning.innerText = ''
 
           }
         }
