@@ -34,7 +34,6 @@ const AddToDoForm: React.FC<{addToDo: Function, setAdding: Function, origToDos: 
           } else {
             input.className='border rounded p-1'
             warning.innerText = ''
-
           }
         }
       }
