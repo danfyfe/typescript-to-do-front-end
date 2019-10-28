@@ -54,18 +54,18 @@ export const HomePage: React.FC = () => {
   //   })
   // }
 
-  function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
-    let index: number = toDos.indexOf(origToDo)
-    let newToDos = [...toDos]
-    newToDos.splice(index, 1, updatedToDo)
-    setToDos(newToDos)
-  }
+  // function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
+  //   let index: number = toDos.indexOf(origToDo)
+  //   let newToDos = [...toDos]
+  //   newToDos.splice(index, 1, updatedToDo)
+  //   setToDos(newToDos)
+  // }
 
 return(
   <div>
     <Header />
     { toDos ? <>
-      <ToDosContainer origToDos={toDos} setToDos={setToDos} updateStatus={updateStatus} />
+      <ToDosContainer origToDos={toDos} setToDos={setToDos} />
       <GraphsContainer toDos={toDos}/> </>:
       <Loading/>
     }

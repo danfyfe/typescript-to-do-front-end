@@ -7,8 +7,8 @@ import { ToDo } from '../interfaces/ToDoInterfaces'
 import getApiKey from '../actions/getApiKey'
 
 
-export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, updateStatus: Function }> = props => {
-  const { origToDos, updateStatus, setToDos } = props
+export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function }> = props => {
+  const { origToDos, setToDos } = props
 
   const [ adding, setAdding ] = useState()
   const [ errorMessage, setErrorMessage ] = useState(null)
@@ -40,6 +40,37 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, up
     })
   }
 
+  function updateStatus( origToDo: ToDo, updatedToDo: ToDo ){
+    fetch(`${getApiKey}/toDos/${origToDo.id}`,{
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        to_do: {
+          title: updatedToDo.title,
+          completed: updatedToDo.completed
+        }
+      })
+    }).then( resp => resp.json())
+    .then( result => {
+      let index: number = origToDos.indexOf(origToDo)
+      let newToDos = [...origToDos]
+      newToDos.splice(index, 1, result.updatedToDo)
+      setToDos(newToDos)
+    })
+  }
+
+  function deleteToDo(toDoId: number){
+    fetch(`${getApiKey}/toDos/${toDoId}`,{
+      method:'DELETE'
+    }).then(resp => resp.json())
+    .then( result => {
+      setToDos(result.toDos)
+    })
+  }
+
   return(
     <div className='d-flex flex-column main'>
 
@@ -55,22 +86,26 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function, up
       </div>
 
       <div className='sec-color border'>
+
         { errorMessage ?
           <ErrorMessageCard
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
-          /> : null}
-        {adding ?
+          /> : null }
+
+        { adding ?
           <AddToDoForm
             origToDos={origToDos}
             addToDo={addToDo}
-            setAdding={setAdding}/> : null}
+            setAdding={setAdding}/> : null }
+
         <div className='d-flex justify-content-around third-color font-weight-bold'>
           <span>Title</span>
           <span>Status</span>
         </div>
 
         <ToDosList
+          deleteToDo={deleteToDo}
           toDos={origToDos}
           updateStatus={updateStatus}
         />

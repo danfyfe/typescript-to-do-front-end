@@ -28,7 +28,7 @@ const AddToDoForm: React.FC<{addToDo: Function, setAdding: Function, origToDos: 
           if(origToDos[i].title === title) {
             input.className='border rounded p-1 border-danger text-danger'
             warning.className='text-danger font-sm p-1'
-            warning.innerText = 'Title already being used'
+            warning.innerText = 'Title already in use'
             inputDiv.appendChild(warning)
             break
           } else {
