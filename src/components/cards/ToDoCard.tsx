@@ -36,35 +36,36 @@ const ToDoCard: React.FC<{ key: number, index: number, toDo: ToDo, updateStatus:
           </animated.div> :
 
           <animated.div style={flippedProps}>
-          { deleting ? <ToDoCardDeleting deleteToDo={deleteToDo} setDeleting={setDeleting} toDoId={id}/> : <>
+          { deleting ?
+            <ToDoCardDeleting deleteToDo={deleteToDo} setDeleting={setDeleting} toDoId={id}/> : <>
             <div className='col d-flex'>
 
-            <div className='col-1'>
-            <span>{index + 1}</span>
-            </div>
-
-            <div className='col'>
-            <span className={ completed ? 'text-muted text-line-through' : "" }>{title}</span>
-            </div>
-
-            <div className='col-1'>
-            { completed ?
-              <div onClick={() => setDeleting(true)}>
-              <FontAwesomeIcon className='text-danger' icon='times'/>
-              </div> : null }
-              </div>
+              <div className='col-1'>
+                <span>{index + 1}</span>
               </div>
 
-              <div className='col-sm d-flex justify-content-around'>
-              <div className=''>
-              <ToDoCardStatus completed={completed}/>
+              <div className='col'>
+                <span className={ completed ? 'text-muted text-line-through' : "" }>{title}</span>
               </div>
 
+              <div className='col-1'>
+              { completed ?
+                <div onClick={() => setDeleting(true)}>
+                  <FontAwesomeIcon className='text-danger' icon='times'/>
+                </div> : null }
+                </div>
+                </div>
+
+                <div className='col-sm d-flex justify-content-around'>
+                <div className=''>
+                  <ToDoCardStatus completed={completed}/>
+                </div>
 
 
-              <div className='col-1' onClick={() => setEditing(true)}>
-              <FontAwesomeIcon className='' icon='edit'/>
-              </div>
+
+                <div className='col-1' onClick={() => setEditing(true)}>
+                  <FontAwesomeIcon className='' icon='edit'/>
+                </div>
               </div>
 
           </>}

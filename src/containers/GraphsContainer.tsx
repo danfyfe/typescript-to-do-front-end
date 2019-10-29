@@ -25,6 +25,32 @@ const GraphsContainer: React.FC<{toDos: ToDo[]}> = props => {
 
     const inProgPer = toDoProgObj.inProg / toDos.length * 100
 
+    function createData( completedPer: number, inProgPer: number ){
+      let data = []
+
+      if( completedPer === 0) {
+        data = [{
+          name: 'In Prog',
+          y: inProgPer
+        }]
+      } else if( inProgPer === 0) {
+        data = [{
+          name: 'Completed',
+          y: completedPer
+        }]
+      } else {
+        data = [{
+          name: 'Completed',
+          y: completedPer
+        },
+        {
+          name: 'In Prog',
+          y: inProgPer
+        }]
+      }
+      return data
+    };
+
     // highcharts
     Highcharts.chart({
       chart: {
@@ -40,14 +66,7 @@ const GraphsContainer: React.FC<{toDos: ToDo[]}> = props => {
       series: [{
         name: 'To Dos',
         colorByPoint: true,
-        data: [{
-          name: 'Completed',
-          y: completedPer
-        },
-        {
-          name: 'In Prog',
-          y: inProgPer
-        }]
+        data: createData(completedPer, inProgPer)
       }]
     })
 

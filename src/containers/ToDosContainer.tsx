@@ -12,7 +12,6 @@ export const ToDosContainer: React.FC<{origToDos: ToDo[], setToDos: Function }> 
 
   const [ adding, setAdding ] = useState()
   const [ errorMessage, setErrorMessage ] = useState(null)
-  // const [ newToDoTitle, setNewToDoTitle ] = useState()
 
   function addToDo( title: string){
     fetch(`${getApiKey}/toDos`, {
