@@ -7,22 +7,23 @@ import GraphsContainer from '../containers/GraphsContainer'
 // import { ToDo } from '../interfaces/ToDoInterfaces'
 
 import getApiKey from '../actions/getApiKey'
-
+import { getToDos } from '../actions/fetches'
 
 export const HomePage: React.FC = () => {
 
   const [ toDos, setToDos ] = useState()
 
   useEffect(() => {
-    fetch(`${getApiKey}/toDos`, {
-      method: 'GET'
-    })
-    .then( resp => resp.json())
-    .then( results => {
-      setToDos(results)
-    })
+    // fetch(`${getApiKey}/toDos`, {
+    //   method: 'GET'
+    // })
+    // .then( resp => resp.json())
+    // .then( results => {
+    //   setToDos(results)
+    // })
+    getToDos().then(setToDos)
   }, [])
-
+  
 return(
   <div>
     <Header />
