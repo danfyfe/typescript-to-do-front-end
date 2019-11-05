@@ -20,3 +20,19 @@
   // border-top: 100px solid #555;
 }
 
+.bar-container {
+  width: 25px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bar {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  margin: 10%;
+}
+

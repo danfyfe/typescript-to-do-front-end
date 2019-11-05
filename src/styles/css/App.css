@@ -1,17 +1,52 @@
-/* Error: Undefined variable.
- *   ,
- * 2 |   background-color: $main-bg-color;
- *   |                     ^^^^^^^^^^^^^^
- *   '
- *   sass/App.scss 2:21  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 2 \2502    background-color: $main-bg-color;\a   \2502                      ^^^^^^^^^^^^^^\a   \2575 \a   sass/App.scss 2:21  root stylesheet";
+.main-color {
+  background-color: #3F88C5;
 }
+
+.sec-color {
+  background-color: white;
+}
+
+.third-color {
+  background-color: grey;
+}
+
+.main {
+  width: 90%;
+  margin: 2vh auto;
+}
+
+.text-line-through {
+  text-decoration: line-through;
+}
+
+@media only screen and (min-width: 600px) {
+  .main {
+    width: 50%;
+    margin: 2vh auto;
+  }
+}
+.add-btn:hover {
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.three-quart-width {
+  width: 75%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.quart-width {
+  width: 25%;
+}
+
+.font-sm {
+  font-size: 10px;
+}
+
+/*# sourceMappingURL=App.css.map */
