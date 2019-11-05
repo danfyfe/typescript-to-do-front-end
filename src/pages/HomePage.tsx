@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Loading from '../components/Loading'
 import { ToDosContainer } from '../containers/ToDosContainer'
 import GraphsContainer from '../containers/GraphsContainer'
+import FunContainer from '../containers/FunContainer'
 // import { ToDo } from '../interfaces/ToDoInterfaces'
 
 import getApiKey from '../actions/getApiKey'
@@ -23,11 +24,12 @@ export const HomePage: React.FC = () => {
     // })
     getToDos().then(setToDos)
   }, [])
-  
+
 return(
   <div>
     <Header />
     { toDos ? <>
+      <FunContainer/>
       <ToDosContainer origToDos={toDos} setToDos={setToDos} />
       <GraphsContainer toDos={toDos}/> </>:
       <Loading/>
