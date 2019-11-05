@@ -96,4 +96,25 @@ code {
   margin: 10%;
 }
 
+.left {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  transition: 0.5s;
+  transform: rotate(-45deg);
+}
+
+.right {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  transform: rotate(45deg);
+}
+
+.mid {
+  display: none;
+}
+
 /*# sourceMappingURL=main.css.map */

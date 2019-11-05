@@ -34,4 +34,26 @@
   margin: 10%;
 }
 
+.left {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  transition: 0.4s;
+  transform: rotate(-45deg);
+}
+
+.right {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  transition: 0.4s;
+  transform: rotate(45deg);
+}
+
+.mid {
+  display: none;
+}
+
 /*# sourceMappingURL=fun.css.map */

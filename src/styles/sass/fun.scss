@@ -36,3 +36,32 @@
   margin: 10%;
 }
 
+.left {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  // margin: 10%;
+  transition: 0.4s;
+  transform: rotate(-45deg);
+}
+
+.right {
+  height: 2px;
+  width: 100%;
+  color: #555;
+  border: 2px solid #555;
+  // margin: 10%;
+  transition: 0.4s;
+  transform: rotate(45deg);
+}
+
+.mid {
+  display: none;
+  // height: 2px;
+  // width: 100%;
+  // color: #555;
+  // border: 2px solid transparent;
+  // margin: 10%;
+}
+
