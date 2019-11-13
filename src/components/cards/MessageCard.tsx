@@ -7,7 +7,7 @@ const MessageCard: React.FC<{ message: Message }> = props => {
     
 
     return(
-        <div className='container border rounded p-2'>
+        <div className='container border rounded p-2 my-2'>
             <div className='d-flex flex-column p-1'>
                 <h5>{title}</h5>
                 <p className='px-1'>{content}</p>

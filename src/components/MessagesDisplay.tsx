@@ -16,9 +16,9 @@ const MessagesDisplay: React.FC<{ messages: Message[]}> = props => {
 
     return(
         <div className='container border rounded mx-auto my-2'>
-            <h5>Messages</h5>
-            <div className='d-flex flex-column container border rounded'>
-                {renderMessages(messages)}
+            <h5 className='my-1'>Messages</h5>
+            <div className='d-flex flex-column container my-2'>
+                { messages.length !== 0 ? renderMessages(messages) : null }
             </div>
         </div>
     )
