@@ -4,10 +4,9 @@ import { Message } from '../../interfaces/MessageInterfaces'
 const MessageCard: React.FC<{ message: Message }> = props => {
 
     const { title, content, user, urgency, viewed } = props.message
-    
-
+    console.log(urgency)
     return(
-        <div className='container border rounded p-2 my-2'>
+        <div className={ urgency + ' container border rounded p-2 my-2'}>
             <div className='d-flex flex-column p-1'>
                 <h5>{title}</h5>
                 <p className='px-1'>{content}</p>

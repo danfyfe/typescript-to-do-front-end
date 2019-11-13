@@ -10,7 +10,7 @@ export interface Message {
     title: string;
     content: string;
     user: string;
-    urgency: number;
+    urgency: string;
     viewed: boolean;
 }
 

@@ -118,4 +118,16 @@ code {
   display: none;
 }
 
+.low {
+  border-color: cornflowerblue !important;
+}
+
+.medium {
+  border-color: khaki !important;
+}
+
+.high {
+  border-color: crimson !important;
+}
+
 /*# sourceMappingURL=main.css.map */

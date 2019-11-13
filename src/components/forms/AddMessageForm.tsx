@@ -22,7 +22,7 @@ const AddMessageForm: React.FC<{ addMessage: Function }> = props => {
                 initialValues={initialValues}
                 onSubmit={(values, actions) => {
                     addMessage( values )
-                // console.log({ values, actions });
+                console.log({ values, actions });
                 // alert(JSON.stringify(values, null, 2));
                 actions.setSubmitting(false);
                 }}
@@ -35,16 +35,19 @@ const AddMessageForm: React.FC<{ addMessage: Function }> = props => {
                                 type="text"
                                 onChange={props.handleChange}
                                 onBlur={props.handleBlur}
-                                value={props.values.title}
+                                // value={props.values.title}
+                                placeholder='Title'
                                 name="title"
                             />
                             <input
                                 type='text'
                                 onChange={props.handleChange}
                                 onBlur={props.handleBlur}
-                                value={props.values.content}
+                                // value={props.values.content}
+                                placeholder='Content'
                                 name='content'
                             />
+                            
                         </div>
                         
                         <div className='d-flex container justify-content-around'>
@@ -52,16 +55,26 @@ const AddMessageForm: React.FC<{ addMessage: Function }> = props => {
                                 type='text'
                                 onChange={props.handleChange}
                                 onBlur={props.handleBlur}
-                                value={props.values.user}
+                                placeholder='User'
                                 name='user'
                             />
-                            <input
-                                type='number'
+                            {/* <input
+                                type='text'
                                 onChange={props.handleChange}
                                 onBlur={props.handleBlur}
-                                value={props.values.urgency}
+                                placeholder='Urgency 1-5'
                                 name='urgency'
-                            />
+                            /> */}
+                            <select 
+                                onChange={props.handleChange}
+                                name='urgency'
+                                
+                                >
+                                <option>Urgency</option>
+                                <option value='low'>Low</option>
+                                <option value='medium'>Medium</option>
+                                <option value='high'>High</option>
+                            </select>
                         </div>
                         
                         {props.errors.title && <div id="feedback">{props.errors.title}</div>}
