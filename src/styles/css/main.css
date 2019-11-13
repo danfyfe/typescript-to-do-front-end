@@ -101,7 +101,7 @@ code {
   width: 100%;
   color: #555;
   border: 2px solid #555;
-  transition: 0.5s;
+  transition: 0.4s;
   transform: rotate(-45deg);
 }
 
@@ -110,10 +110,11 @@ code {
   width: 100%;
   color: #555;
   border: 2px solid #555;
+  transition: 0.4s;
   transform: rotate(45deg);
 }
 
-.mid {
+.none {
   display: none;
 }
 

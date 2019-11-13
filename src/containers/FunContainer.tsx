@@ -10,17 +10,17 @@ const FunContainer: React.FC = props => {
     if( top && mid && bot ) {
       top.className = 'right'
       bot.className = 'left'
-      mid.className = 'mid'
+      mid.remove()
     }
   };
 
   return(
-    <div className='fun mx-auto my-4'>
-    <div className='bar-container' onClick={changeBars}>
+    <div className='fun'>
+    {/*<div className='bar-container' onClick={changeBars}>
       <div className='bar' id='top'/>
       <div className='bar' id='mid'/>
       <div className='bar' id='bot'/>
-    </div>
+    </div>*/}
     </div>
   )
 }

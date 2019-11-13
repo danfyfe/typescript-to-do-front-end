@@ -46,6 +46,7 @@ const AddToDoForm: React.FC<{addToDo: Function, setAdding: Function, origToDos: 
     <div className='border rounded m-2 p-1 d-flex flex-column'>
       <div id='input-div' className='d-flex flex-column'>
         <input
+          data-test='add-toDo'
           id='add-to-do-title'
           className='border rounded p-1'
           type='text'

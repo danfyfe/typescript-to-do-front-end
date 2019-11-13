@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 
@@ -10,11 +10,18 @@ Enzyme.configure({adapter: new EnzymeAdapter()})
 
 
 test('Renders ToDoList Component', () => {
-  const wrapper = shallow(<ToDosContainer />)
+  const toDos = [
+    { id: 1, title: 'Blep', completed: false},
+    { id:2, title: 'Bork!', completed: false}
+  ]
+
+  function setToDos(){
+    // 
+  }
+
+  const wrapper = shallow(<ToDosContainer origToDos={toDos} setToDos={setToDos} />)
   expect(wrapper.find(ToDosList)).toBeTruthy()
 })
-
-
 
 
 test('Renders correct number of toDos', () => {
@@ -25,19 +32,25 @@ test('Renders correct number of toDos', () => {
   ]
 
   function updateStatus( id: number, completed: boolean, title: string ){
-    console.log('completed:', completed, 'title:', title )
+    // console.log('completed:', completed, 'title:', title )
 
-    let toDo = toDos.find( toDo => {
-      return toDo.id === id
-    })
-    console.log(toDo)
+    // let toDo = toDos.find( toDo => {
+    //   return toDo.id === id
+    // })
+    // console.log(toDo)
   }
 
-  const wrapper = shallow(<ToDosList toDos={toDos} updateStatus={updateStatus}/>)
+  function deleteToDo(toDoId: number){
+
+  }
+
+  const wrapper = shallow(<ToDosList toDos={toDos} updateStatus={updateStatus} deleteToDo={deleteToDo}/>)
 
   expect(wrapper.find(ToDoCard)).toHaveLength(toDos.length)
 })
 
-test('Can add a todo', () => {
+test('Renders an input to add To Do', () => {
+  
+
 
 })

@@ -4,7 +4,8 @@ import Header from '../components/Header'
 import Loading from '../components/Loading'
 import { ToDosContainer } from '../containers/ToDosContainer'
 import GraphsContainer from '../containers/GraphsContainer'
-import FunContainer from '../containers/FunContainer'
+// import FunContainer from '../containers/FunContainer'
+import MessagesContainer from '../containers/MessagesContainer'
 // import { ToDo } from '../interfaces/ToDoInterfaces'
 
 import getApiKey from '../actions/getApiKey'
@@ -29,7 +30,7 @@ return(
   <div>
     <Header />
     { toDos ? <>
-      <FunContainer/>
+      <MessagesContainer/>
       <ToDosContainer origToDos={toDos} setToDos={setToDos} />
       <GraphsContainer toDos={toDos}/> </>:
       <Loading/>
